@@ -1,0 +1,23 @@
+{
+  "name": "injector",
+  "version": "0.0.0",
+  "description": "Inject a dependency",
+  "main": "lib",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/unlight/injector.git"
+  },
+  "keywords": [
+    "injector",
+    "dependency",
+    "di"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/unlight/injector/issues"
+  },
+  "homepage": "https://github.com/unlight/injector#readme"
+}
