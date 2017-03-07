@@ -1,0 +1,4 @@
+*.sublime-*
+/src/
+/node_modules/
+/tsconfig.json

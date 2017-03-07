@@ -1,8 +1,9 @@
 {
   "name": "@iamthes/inject",
-  "version": "1.0.0",
+  "version": "0.0.0",
   "description": "Inject a dependency",
   "main": "lib",
+  "typings": "lib",
   "scripts": {
     "test": "npm run t",
     "clean": "rm -rf lib",
@@ -16,6 +17,9 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/unlight/inject.git"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "keywords": [
     "injector",
