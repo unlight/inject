@@ -1,11 +1,7 @@
 let dependencies: {[id: string]: () => any} = {};
-/**
- * Mock a dependency for unit testing
- * @param token The DI-token
- * @param mock The mock object
- */
-const mock = (token: string, mock: () => any) => {
-	dependencies[token] = mock;
+
+const provide = (token: string, value: () => any) => {
+	dependencies[token] = value;
 };
 
 const clear = () => {
@@ -25,6 +21,7 @@ export const inject = <T>(token: string, factory: () => T): T  => {
 };
 
 export const injector = {
-	mock: mock,
+	provide: provide,
+	mock: provide,
 	clear: clear,
 };

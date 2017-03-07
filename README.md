@@ -1,2 +1,2 @@
-# injector
+# inject
 Inject a dependency

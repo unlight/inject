@@ -1,23 +1,40 @@
 {
-  "name": "injector",
-  "version": "0.0.0",
+  "name": "@iamthes/inject",
+  "version": "1.0.0",
   "description": "Inject a dependency",
   "main": "lib",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "npm run t",
+    "clean": "rm -rf lib",
+    "compile": "tsc",
+    "compile:w": "tsc -w",
+    "t": "npm run mocha -- src/*.spec.ts",
+    "test:w": "npm run mocha -- --watch src/*.spec.ts ",
+    "dev": "npm run compile && concurrently -r -k -p \"{name}:\" -n \"c,t\" \"npm run compile:w\" \"npm run test:w\"",
+    "mocha": "cross-env TS_NODE_FAST=1 mocha --compilers ts:ts-node/register"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/unlight/injector.git"
+    "url": "git+https://github.com/unlight/inject.git"
   },
   "keywords": [
     "injector",
+    "inject",
     "dependency",
     "di"
   ],
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/unlight/injector/issues"
+    "url": "https://github.com/unlight/inject/issues"
   },
-  "homepage": "https://github.com/unlight/injector#readme"
+  "homepage": "https://github.com/unlight/inject#readme",
+  "devDependencies": {
+    "@types/mocha": "2.2.39",
+    "@types/node": "7.0.5",
+    "concurrently": "3.4.0",
+    "cross-env": "3.2.3",
+    "mocha": "3.2.0",
+    "ts-node": "2.1.0",
+    "typescript": "2.2.1"
+  }
 }
