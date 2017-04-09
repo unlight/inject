@@ -1,6 +1,6 @@
 {
   "name": "@epam/inject",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "Inject a dependency",
   "main": "lib",
   "typings": "lib/index.d.ts",
