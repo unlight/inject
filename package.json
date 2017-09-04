@@ -1,6 +1,6 @@
 {
-  "name": "@epam/inject",
-  "version": "1.0.1",
+  "name": "njct",
+  "version": "1.0.0",
   "description": "Inject a dependency",
   "main": "lib",
   "typings": "lib/index.d.ts",
@@ -14,7 +14,8 @@
     "t": "npm run mocha -- src/*.spec.ts",
     "test:w": "npm run mocha -- --watch src/*.spec.ts ",
     "dev": "npm run compile && concurrently -r -k -p \"{name}:\" -n \"c,t\" \"npm run compile:w\" \"npm run test:w\"",
-    "mocha": "ts-node -F node_modules/mocha/bin/_mocha"
+    "mocha": "ts-node -F node_modules/mocha/bin/_mocha",
+    "release": "npm run build && np"
   },
   "repository": {
     "type": "git",
@@ -35,11 +36,11 @@
   },
   "homepage": "https://github.com/unlight/inject#readme",
   "devDependencies": {
-    "@types/mocha": "2.2.39",
-    "@types/node": "7.0.5",
-    "concurrently": "3.4.0",
-    "mocha": "3.2.0",
-    "ts-node": "2.1.0",
-    "typescript": "2.2.1"
+    "@types/mocha": "^2.2.42",
+    "@types/node": "^8.0.26",
+    "concurrently": "^3.5.0",
+    "mocha": "^3.5.0",
+    "ts-node": "^3.3.0",
+    "typescript": "^2.5.2"
   }
 }
