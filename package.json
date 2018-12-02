@@ -1,6 +1,6 @@
 {
   "name": "njct",
-  "version": "1.1.1",
+  "version": "6.0.0",
   "description": "Inject a dependency",
   "main": "dist",
   "typings": "src/index.ts",
@@ -35,13 +35,13 @@
     "eslint:w": "chokidar \"src/**/*.ts\" --initial -c \"npm run eslint\"",
     "lint:w": "run-p tsclint:w eslint:w",
     "semantic-release": "semantic-release",
-    "prepublishOnly": "npm run build && sed -i -e 's/devDependencies/_devDependencies/g' package.json",
+    "prepublishOnly": "npm run build && sed -i -e 's/_devDependencies/__devDependencies/g' package.json",
     "build": "tsc",
     "prebuild": "npm run clean",
     "clean": "rimraf dist",
     "commit": "git-cz"
   },
-  "devDependencies": {
+  "_devDependencies": {
     "@semantic-release/changelog": "^3.0.1",
     "@semantic-release/git": "^7.0.5",
     "@semantic-release/npm": "^5.1.1",
