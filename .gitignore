@@ -1,3 +1,9 @@
-*.sublime-*
-/lib/
-/node_modules/
+/node_modules
+/.idea
+/.awcache
+/.vscode
+/.nyc_output
+*.log
+~*
+/dist/
+/dist_*

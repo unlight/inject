@@ -1,30 +1,46 @@
-import { inject, injector } from './index';
-import assert = require('assert');
+/* eslint-disable tslint/config */
+import { inject, injector } from '.';
+import * as expect from 'expect';
+
+afterEach(() => {
+    injector.clear();
+});
 
 it('smoke test', () => {
-    assert(inject);
+    expect(inject).toBeTruthy();
 });
 
 it('provide number', () => {
-    let result = inject('number', () => 1);
-    assert(result === 1);
+    const result = inject('number', () => 1);
+    expect(result).toEqual(1);
 });
 
 it('provide object', () => {
-    let dep = { foo: 'be' };
-    let result = inject('dep', () => dep);
-    assert(result === dep);
+    const dep = { foo: 'be' };
+    const result = inject('dep', () => dep);
+    expect(result).toEqual(dep);
 });
 
 it('mock test', () => {
     injector.mock('id', () => 'foo');
-    let result = inject('id', () => 'buz');
-    assert(result === 'foo');
+    const result = inject('id', () => 'buz');
+    expect(result).toEqual('foo');
 });
 
 it('clear', () => {
     injector.mock('foo', () => 'FOO');
     injector.clear();
-    let result = inject('foo', () => '123');
-    assert(result === '123');
+    const result = inject('foo', () => '123');
+    expect(result).toEqual('123');
+});
+
+it('inject service', () => {
+    class Car {
+        static count = 0;
+        constructor() { Car.count++; }
+    }
+    let vehicle = inject(Car);
+    vehicle = inject(Car);
+    expect(vehicle).toBeA(Car);
+    expect(Car.count).toEqual(1);
 });
