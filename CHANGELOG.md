@@ -1,3 +1,10 @@
+## [7.1.1](https://github.com/unlight/inject/compare/v7.1.0...v7.1.1) (2018-12-18)
+
+
+### Bug Fixes
+
+* Fixed publish content ([ad5cc77](https://github.com/unlight/inject/commit/ad5cc77))
+
 # [7.1.0](https://github.com/unlight/inject/compare/v7.0.0...v7.1.0) (2018-12-18)
 
 
