@@ -1,4 +1,5 @@
-import once = require('lodash.once');
+// https://github.com/1-liners/1-liners/blob/master/module/once.js
+const once = (fn) => ((first = true) => () => first ? (first = !first, fn = fn()) : fn)();
 
 const dependencies = new Map();
 
@@ -16,6 +17,7 @@ function provide(token: any, mock?: () => any): void {
 function clear() {
     dependencies.clear();
 }
+
 export function inject<T extends new (...args: any[]) => any>(ctor: T): InstanceType<T>;
 export function inject<T>(token: string, factory: () => T): T;
 /**
@@ -30,8 +32,8 @@ export function inject<T>(token: any, factory?: () => T): T {
         return dependency();
     }
     if (factory === undefined) {
-        factory = once(() => new token());
-        dependencies.set(token, factory);
+        dependencies.set(token, once(() => new token()));
+        return inject(token);
     }
     return factory();
 }
