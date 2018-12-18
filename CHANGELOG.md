@@ -1,3 +1,10 @@
+## [7.1.2](https://github.com/unlight/inject/compare/v7.1.1...v7.1.2) (2018-12-18)
+
+
+### Bug Fixes
+
+* Do not use dist as root ([4388c1e](https://github.com/unlight/inject/commit/4388c1e))
+
 ## [7.1.1](https://github.com/unlight/inject/compare/v7.1.0...v7.1.1) (2018-12-18)
 
 

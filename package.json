@@ -1,6 +1,6 @@
 {
   "name": "njct",
-  "version": "0.0.0-dev",
+  "version": "7.1.2",
   "description": "Inject a dependency",
   "main": "dist",
   "typings": "dist/index.d.ts",
