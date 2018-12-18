@@ -3,7 +3,7 @@ const once = (fn) => ((first = true) => () => first ? (first = !first, fn = fn()
 
 const dependencies = new Map();
 
-function provide(token: NewableFunction): void;
+function provide(token: new(...args: any[]) => any): void;
 function provide(token: any, mock: () => any): void;
 /**
  * Provide a dependency.
