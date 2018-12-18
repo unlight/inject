@@ -1,26 +1,29 @@
 import once = require('lodash.once');
 
 const dependencies = new Map();
+
+function provide(token: NewableFunction): void;
+function provide(token: any, mock: () => any): void;
 /**
- * Mock a dependency for unit testing
+ * Provide a dependency.
  * @param token The injection token
  * @param mock The mock object
  */
-function mock(token: any, mock: () => any) {
+function provide(token: any, mock?: () => any): void {
     dependencies.set(token, mock);
 }
 
 function clear() {
     dependencies.clear();
 }
+export function inject<T extends new (...args: any[]) => any>(ctor: T): InstanceType<T>;
+export function inject<T>(token: string, factory: () => T): T;
 /**
  * Inject a dependency
  * @param token The injection token
  * @param factory Factory function that returns the dependency
  * @returns The dependency or a mock object if the dependency was mocked using mock()
  */
-export function inject<T extends new (...args: any[]) => any>(ctor: T): InstanceType<T>;
-export function inject<T>(token: string, factory: () => T): T;
 export function inject<T>(token: any, factory?: () => T): T {
     const dependency = dependencies.get(token);
     if (dependency) {
@@ -34,6 +37,7 @@ export function inject<T>(token: any, factory?: () => T): T {
 }
 
 export const injector = {
-    mock,
+    provide,
+    mock: provide,
     clear,
 };

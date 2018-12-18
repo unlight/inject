@@ -44,3 +44,10 @@ it('inject service', () => {
     expect(vehicle).toBeA(Car);
     expect(Car.count).toEqual(1);
 });
+
+it('provide dependency', () => {
+    class Cat { }
+    injector.provide(Cat);
+    const cat = inject(Cat);
+    expect(cat).toBeA(Cat);
+});
