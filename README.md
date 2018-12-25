@@ -26,3 +26,4 @@ expect(Car.count).toEqual(1);
 
 ## CHANGELOG
 See [CHANGELOG](CHANGELOG.md)
+
