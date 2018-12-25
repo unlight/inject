@@ -1,3 +1,10 @@
+## [7.1.3](https://github.com/unlight/inject/compare/v7.1.2...v7.1.3) (2018-12-25)
+
+
+### Bug Fixes
+
+* Error: Cannot find module 'njct' ([4f15b41](https://github.com/unlight/inject/commit/4f15b41))
+
 ## [7.1.2](https://github.com/unlight/inject/compare/v7.1.1...v7.1.2) (2018-12-18)
 
 
