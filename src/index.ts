@@ -38,6 +38,35 @@ export function inject<T>(token: any, factory?: () => T): T {
     return factory();
 }
 
+/**
+ * Singleton
+ */
+export function service<T extends new (...args: any[]) => any>(ctor: T): InstanceType<T> {
+    if (dependencies.has(ctor)) {
+        return dependencies.get(ctor);
+    }
+    const result = new ctor();
+    dependencies.set(ctor, result);
+    return result;
+}
+
+export function factory(fn, ...args: any[]) {
+    if (dependencies.has(fn)) {
+        return dependencies.get(fn);
+    }
+    const result = fn(...args);
+    dependencies.set(fn, result);
+    return result;
+}
+
+export function value(token: string | symbol, v: any) {
+    if (dependencies.has(token)) {
+        return dependencies.get(token);
+    }
+    dependencies.set(token, v);
+    return v;
+}
+
 export const injector = {
     provide,
     mock: provide,
