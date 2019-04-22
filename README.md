@@ -18,8 +18,8 @@ class Car {
     static count = 0;
     constructor() { Car.count++; }
 }
-let vehicle = inject(Car);
-vehicle = inject(Car);
+let vehicle = inject.service(Car);
+vehicle = inject.service(Car);
 expect(vehicle).toBeA(Car);
 expect(Car.count).toEqual(1);
 ```
