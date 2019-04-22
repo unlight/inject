@@ -1,3 +1,15 @@
+# [8.0.0](https://github.com/unlight/inject/compare/v7.1.3...v8.0.0) (2019-04-22)
+
+
+### Features
+
+* Separated injection to types ([fbe3f94](https://github.com/unlight/inject/commit/fbe3f94))
+
+
+### BREAKING CHANGES
+
+* Signature changed
+
 ## [7.1.3](https://github.com/unlight/inject/compare/v7.1.2...v7.1.3) (2018-12-25)
 
 
