@@ -66,7 +66,7 @@ export const inject = factory as {
     factory: typeof factory;
     service: typeof service;
     value: typeof value;
-}
+};
 
 inject['factory'] = factory;
 inject['service'] = service;

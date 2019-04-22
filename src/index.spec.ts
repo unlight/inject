@@ -1,4 +1,4 @@
-/* eslint-disable tslint/config */
+/* eslint-disable @typescript-eslint/tslint/config */
 import { inject, injector } from '.';
 import * as expect from 'expect';
 
