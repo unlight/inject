@@ -39,15 +39,20 @@ it('inject service', () => {
         static count = 0;
         constructor() { Car.count++; }
     }
-    let vehicle = inject(Car);
-    vehicle = inject(Car);
+    let vehicle = inject.service(Car);
+    vehicle = inject.service(Car);
     expect(vehicle).toBeA(Car);
     expect(Car.count).toEqual(1);
 });
 
 it('provide dependency', () => {
     class Cat { }
-    injector.provide(Cat);
-    const cat = inject(Cat);
+    injector.provide(Cat, () => new Cat());
+    const cat = inject.service(Cat);
     expect(cat).toBeA(Cat);
+});
+
+it('inject value', () => {
+    const test = inject.value('token', 'ZOOM');
+    expect(test).toBe('ZOOM');
 });
