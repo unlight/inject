@@ -55,6 +55,7 @@
     "@types/node": "^16.3.3",
     "@typescript-eslint/parser": "^4.28.3",
     "c8": "^7.7.3",
+    "conventional-changelog-conventionalcommits": "^4.6.0",
     "eslint": "^7.30.0",
     "eslint-plugin-import": "^2.23.4",
     "eslint-plugin-typescript": "^0.14.0",
