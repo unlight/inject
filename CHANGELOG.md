@@ -1,3 +1,10 @@
+## [8.1.0](https://github.com/unlight/inject/compare/v8.0.0...v8.1.0) (2021-07-16)
+
+
+### Features
+
+* Allow inject without default factory ([cf20857](https://github.com/unlight/inject/commit/cf208574ca34912f566bcbb08ef594112c503d2a))
+
 # [8.0.0](https://github.com/unlight/inject/compare/v7.1.3...v8.0.0) (2019-04-22)
 
 
