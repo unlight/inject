@@ -3,23 +3,21 @@
     "target": "es2015",
     "module": "commonjs",
     "moduleResolution": "node",
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
     "importHelpers": true,
-    "experimentalDecorators": true,
+    "strict": true,
+    "strictPropertyInitialization": false,
+    "experimentalDecorators": false,
     "emitDecoratorMetadata": false,
     "outDir": "dist",
     "pretty": true,
     "removeComments": false,
     "sourceMap": true,
-    "declaration": false,
+    "declaration": true,
     "declarationMap": false,
-    "lib": [
-      "esnext"
-    ]
+    "skipLibCheck": true,
+    "lib": ["dom", "esnext"]
   },
-  "include": [
-    "src/**/*.ts"
-  ],
-  "exclude": [
-    "node_modules"
-  ]
+  "include": ["src/**/*.ts", "example/**/*.ts"]
 }

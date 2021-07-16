@@ -1,0 +1,6 @@
+{
+  "allowedNonPeerDependencies": ["."],
+  "lib": {
+    "entryFile": "src/index.ts"
+  }
+}

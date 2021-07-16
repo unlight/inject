@@ -1,4 +1,16 @@
-const once = (fn) => ((first = true) => () => first ? (first = !first, fn = fn()) : fn)();
+function once<T extends [], R>(this: any, function_: (...arguments_: T) => R) {
+    let result: R;
+
+    return (...arguments_: T): R => {
+        if (function_) {
+            result = function_.call(this, ...arguments_);
+            function_ = undefined as any;
+        }
+
+        return result;
+    };
+}
+
 const dependencies = new Map<any, () => any>();
 
 export interface ProvideInterface {
@@ -25,23 +37,29 @@ function clear() {
  * @param factory Factory function that returns the dependency
  * @returns The dependency or a mock object if the dependency was mocked using mock()
  */
-export function factory<T>(token: any, factory: () => T): T {
+export function factory<T>(token: any, factory?: () => T): T {
     if (!dependencies.has(token)) {
-        return factory();
+        if (factory) {
+            return factory();
+        }
+        throw new Error(`Cannot resolve ${token} dependency`);
     }
-    const getInstance = dependencies.get(token);
-    return getInstance();
+    return dependencies.get(token)?.();
 }
 
 /**
  * Singleton
  */
-export function service<T extends new (...args: any[]) => any>(ctor: T): InstanceType<T> {
+export function service<T extends new (...arguments_: any[]) => any>(
+    ctor: T,
+): InstanceType<T> {
     if (!dependencies.has(ctor)) {
-        dependencies.set(ctor, once(() => new ctor()));
+        dependencies.set(
+            ctor,
+            once(() => new ctor()),
+        );
     }
-    const getInstance = dependencies.get(ctor);
-    return getInstance();
+    return dependencies.get(ctor)?.();
 }
 
 /**
@@ -51,8 +69,7 @@ export function value<T>(token: string | symbol, v: T): T {
     if (!dependencies.has(token)) {
         dependencies.set(token, () => v);
     }
-    const getInstance = dependencies.get(token);
-    return getInstance();
+    return dependencies.get(token)?.();
 }
 
 export const injector = {
@@ -62,7 +79,7 @@ export const injector = {
 };
 
 export const inject = factory as {
-    <T>(token: any, factory: () => T): T;
+    <T>(token: any, factory?: () => T): T;
     factory: typeof factory;
     service: typeof service;
     value: typeof value;

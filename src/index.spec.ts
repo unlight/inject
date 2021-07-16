@@ -1,6 +1,5 @@
-/* eslint-disable @typescript-eslint/tslint/config */
 import { inject, injector } from '.';
-import * as expect from 'expect';
+import expect from 'expect';
 
 afterEach(() => {
     injector.clear();
@@ -37,22 +36,30 @@ it('clear', () => {
 it('inject service', () => {
     class Car {
         static count = 0;
-        constructor() { Car.count++; }
+        constructor() {
+            Car.count++;
+        }
     }
     let vehicle = inject.service(Car);
     vehicle = inject.service(Car);
-    expect(vehicle).toBeA(Car);
+    expect(vehicle).toBeInstanceOf(Car);
     expect(Car.count).toEqual(1);
 });
 
 it('provide dependency', () => {
-    class Cat { }
+    class Cat {}
     injector.provide(Cat, () => new Cat());
     const cat = inject.service(Cat);
-    expect(cat).toBeA(Cat);
+    expect(cat).toBeInstanceOf(Cat);
 });
 
 it('inject value', () => {
     const test = inject.value('token', 'ZOOM');
     expect(test).toBe('ZOOM');
+});
+
+it('inject throws error if nothing provided', () => {
+    expect(() => {
+        inject('Cat');
+    }).toThrow('Cannot resolve Cat dependency');
 });
