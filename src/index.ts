@@ -1,4 +1,5 @@
 /* eslint-disable no-redeclare */
+// @ts-ignore
 import isClass from 'node-is-class';
 import { once } from '@zodash/once';
 
