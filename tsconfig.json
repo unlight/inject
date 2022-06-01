@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "target": "es2015",
+    "target": "es2020",
     "module": "commonjs",
     "moduleResolution": "node",
     "esModuleInterop": true,
@@ -19,5 +19,5 @@
     "skipLibCheck": true,
     "lib": ["dom", "esnext"]
   },
-  "include": ["src/**/*.ts", "example/**/*.ts"]
+  "include": ["src"]
 }

@@ -18,20 +18,17 @@
     "type": "git",
     "url": "git+https://github.com/unlight/inject.git"
   },
-  "publishConfig": {
-    "access": "public"
-  },
   "config": {
     "commitizen": {
       "path": "cz-conventional-changelog"
     }
   },
   "scripts": {
+    "mocha": "node -r ts-node/register node_modules/mocha/bin/mocha",
     "test": "npm run eslint && npm run tscheck && npm run test:cov",
-    "_mocha": "node -r ts-node/register/transpile-only node_modules/mocha/bin/_mocha",
-    "test:r": "node -r ts-node/register/transpile-only node_modules/mocha/bin/_mocha src/**/*.spec.ts",
+    "test:r": "npm run mocha -- src/**/*.spec.ts",
     "test:cov": "c8 --reporter text --exclude \"**/*.spec.ts\" --exclude \"**/testing/**\"  npm run test:r -- --no-timeouts",
-    "test:w": "npm run test:r -- --watch --watch-files src/**/*.ts",
+    "test:w": "npm run test:r -- --watch-files src --watch",
     "test:d": "node --inspect-brk -r ts-node/register/transpile-only node_modules/mocha/bin/_mocha --no-timeouts --watch-extensions ts --watch src/**/*.spec.ts",
     "tscheck": "echo tscheck... && tsc --noEmit",
     "tscheck:w": "npm run tscheck -- --watch",
@@ -44,29 +41,28 @@
     "commit": "git-cz"
   },
   "devDependencies": {
-    "@angular/compiler": "^12.1.2",
-    "@angular/compiler-cli": "^12.1.2",
-    "@angular/core": "^12.1.2",
-    "@semantic-release/changelog": "^5.0.1",
-    "@semantic-release/git": "^9.0.0",
-    "@semantic-release/npm": "^7.1.3",
-    "@types/expect": "^24.3.0",
-    "@types/mocha": "^8.2.3",
-    "@types/node": "^16.3.3",
-    "@typescript-eslint/parser": "^4.28.3",
-    "c8": "^7.7.3",
-    "conventional-changelog-conventionalcommits": "^4.6.0",
-    "eslint": "^7.30.0",
-    "eslint-plugin-import": "^2.23.4",
-    "eslint-plugin-typescript": "^0.14.0",
-    "eslint-plugin-unicorn": "^34.0.1",
-    "expect": "27.x",
-    "mocha": "^9.0.2",
-    "ng-packagr": "^12.1.2",
+    "@angular/compiler": "^13.3.11",
+    "@angular/compiler-cli": "^13.3.11",
+    "@angular/core": "^13.3.11",
+    "@semantic-release/changelog": "^6.0.1",
+    "@semantic-release/git": "^10.0.1",
+    "@semantic-release/npm": "^9.0.1",
+    "@types/mocha": "^9.1.1",
+    "@types/node": "^17.0.38",
+    "@typescript-eslint/parser": "^5.27.0",
+    "c8": "^7.11.3",
+    "conventional-changelog-conventionalcommits": "^5.0.0",
+    "eslint": "^8.16.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-unicorn": "^42.0.0",
+    "expect": "28.x",
+    "mocha": "^10.0.0",
+    "ng-packagr": "^13.3.1",
     "npm-run-all": "^4.1.5",
-    "semantic-release": "^17.4.4",
-    "ts-node": "^10.1.0",
-    "tsickle": "^0.43.0",
-    "typescript": "4.3.5"
+    "semantic-release": "^19.0.2",
+    "ts-node": "^10.8.0",
+    "tsickle": "^0.46.0",
+    "tslib": "^2.4.0",
+    "typescript": "4.6.X"
   }
 }

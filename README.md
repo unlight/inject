@@ -13,16 +13,16 @@ fs.readFileSync('data.json');
 // app.spec.ts
 import { injector } from 'njct';
 injector.mock('fs', () => ({
-    readFileSync: () => 'result of call of fs.readFileSync()',
+  readFileSync: () => 'result of call of fs.readFileSync()',
 }));
 ```
 
 ```ts
 class Car {
-    static count = 0;
-    constructor() {
-        Car.count++;
-    }
+  static count = 0;
+  constructor() {
+    Car.count++;
+  }
 }
 let vehicle = inject.service(Car);
 vehicle = inject.service(Car);
