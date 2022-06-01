@@ -1,3 +1,19 @@
+## [9.0.0](https://github.com/unlight/inject/compare/v8.1.0...v9.0.0) (2022-06-01)
+
+
+### ⚠ BREAKING CHANGES
+
+* Single overloaded function
+
+### Bug Fixes
+
+* Disable type check ([51363b1](https://github.com/unlight/inject/commit/51363b1abd6547af9f1b3d7e2ab0142236db48c7))
+
+
+### Code Refactoring
+
+* Single overloaded function ([fb03714](https://github.com/unlight/inject/commit/fb037145a398f245c8d4c86e4720203a940ec04c))
+
 ## [8.1.0](https://github.com/unlight/inject/compare/v8.0.0...v8.1.0) (2021-07-16)
 
 
