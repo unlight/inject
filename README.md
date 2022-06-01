@@ -24,8 +24,8 @@ class Car {
     Car.count++;
   }
 }
-let vehicle = inject.service(Car);
-vehicle = inject.service(Car);
+let vehicle = inject(Car);
+vehicle = inject(Car);
 expect(vehicle).toBeA(Car);
 expect(Car.count).toEqual(1);
 ```

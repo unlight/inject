@@ -40,6 +40,10 @@
     "build": "ng-packagr",
     "commit": "git-cz"
   },
+  "dependencies": {
+    "@zodash/once": "^0.1.6",
+    "node-is-class": "^1.0.4"
+  },
   "devDependencies": {
     "@angular/compiler": "^13.3.11",
     "@angular/compiler-cli": "^13.3.11",

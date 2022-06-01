@@ -1,15 +1,6 @@
-function once<T extends [], R>(this: any, function_: (...arguments_: T) => R) {
-  let result: R;
-
-  return (...arguments_: T): R => {
-    if (function_) {
-      result = function_.call(this, ...arguments_);
-      function_ = undefined as any;
-    }
-
-    return result;
-  };
-}
+/* eslint-disable no-redeclare */
+import isClass from 'node-is-class';
+import { once } from '@zodash/once';
 
 const dependencies = new Map<any, () => any>();
 
@@ -32,42 +23,46 @@ function clear() {
 }
 
 /**
+ * Inject a dependency instance of a class
+ * @param ctor Constructable class reference
+ * @returns The instance of the class or a mock object if the dependency was mocked using mock()
+ */
+export function inject<T extends new (...arguments_: any[]) => any>(ctor: T): T;
+/**
+ * Inject a dependency of primitive value
+ * @param token The injection token
+ * @param value Primitive value
+ * @returns The dependency or a mock value if the dependency was mocked using mock()
+ */
+export function inject<T extends string | number | boolean | symbol>(
+  token: any,
+  value: T,
+): T;
+/**
  * Inject a dependency
  * @param token The injection token
  * @param factory Factory function that returns the dependency
  * @returns The dependency or a mock object if the dependency was mocked using mock()
  */
-export function factory<T>(token: any, factory?: () => T): T {
+export function inject<T>(token: any, factory?: () => T): T;
+
+export function inject(token: any, factory?: unknown): any {
   if (!dependencies.has(token)) {
-    if (factory) {
+    if (typeof factory === 'function') {
       return factory();
     }
-    throw new Error(`Cannot resolve ${token} dependency`);
-  }
-  return dependencies.get(token)?.();
-}
-
-/**
- * Singleton
- */
-export function service<T extends new (...arguments_: any[]) => any>(
-  ctor: T,
-): InstanceType<T> {
-  if (!dependencies.has(ctor)) {
-    dependencies.set(
-      ctor,
-      once(() => new ctor()),
-    );
-  }
-  return dependencies.get(ctor)?.();
-}
-
-/**
- * Value
- */
-export function value<T>(token: string | symbol, v: T): T {
-  if (!dependencies.has(token)) {
-    dependencies.set(token, () => v);
+    if (isClass(token)) {
+      dependencies.set(
+        token,
+        once(() => new token()),
+      );
+    } else if (factory === undefined) {
+      throw new Error(`Cannot resolve ${token} dependency`);
+    }
+    // eslint-disable-next-line unicorn/new-for-builtins
+    else if (Object(factory) !== factory) {
+      dependencies.set(token, () => factory);
+    }
   }
   return dependencies.get(token)?.();
 }
@@ -77,14 +72,3 @@ export const injector = {
   mock: provide as ProvideInterface,
   clear,
 };
-
-export const inject = factory as {
-  <T>(token: any, factory?: () => T): T;
-  factory: typeof factory;
-  service: typeof service;
-  value: typeof value;
-};
-
-inject['factory'] = factory;
-inject['service'] = service;
-inject['value'] = value;

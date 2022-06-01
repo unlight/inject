@@ -40,8 +40,9 @@ it('inject service', () => {
       Car.count++;
     }
   }
-  let vehicle = inject.service(Car);
-  vehicle = inject.service(Car);
+  inject(Car);
+  const vehicle = inject(Car);
+
   expect(vehicle).toBeInstanceOf(Car);
   expect(Car.count).toEqual(1);
 });
@@ -49,12 +50,12 @@ it('inject service', () => {
 it('provide dependency', () => {
   class Cat {}
   injector.provide(Cat, () => new Cat());
-  const cat = inject.service(Cat);
+  const cat = inject(Cat);
   expect(cat).toBeInstanceOf(Cat);
 });
 
 it('inject value', () => {
-  const test = inject.value('token', 'ZOOM');
+  const test = inject('token', 'ZOOM');
   expect(test).toBe('ZOOM');
 });
 
