@@ -12,7 +12,7 @@ fs.readFileSync('data.json');
 
 // app.spec.ts
 import { injector } from 'njct';
-injector.mock('fs', () => ({
+injector.provide('fs', () => ({
   readFileSync: () => 'result of call of fs.readFileSync()',
 }));
 ```
