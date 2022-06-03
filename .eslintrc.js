@@ -13,7 +13,7 @@ module.exports = {
     },
     project: 'tsconfig.json',
   },
-  plugins: ['unicorn', 'import'],
+  plugins: ['unicorn', 'import', 'only-warn'],
   rules: {
     'no-undef': 0,
     'no-unused-vars': 0,
