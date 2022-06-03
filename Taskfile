@@ -1,0 +1,15 @@
+#!/bin/bash
+PATH="$PWD/node_modules/.bin":$PATH
+set -e
+
+build_pkgroll() {
+  set -x
+  rm -rf dist
+  mkdir dist
+  # https://esbuild.github.io/api/#target
+  npx pkgroll --dist=. --target=es2015
+  cp -f README.md LICENSE package.json dist
+  mv -f index.cjs index.mjs index.d.ts dist
+}
+
+"$@"

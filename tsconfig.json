@@ -10,7 +10,7 @@
     "allowSyntheticDefaultImports": true,
     "importHelpers": true,
     "strict": true,
-    "strictPropertyInitialization": false,
+    "noUncheckedIndexedAccess": true,
     "experimentalDecorators": false,
     "emitDecoratorMetadata": false,
     "outDir": "dist",

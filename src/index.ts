@@ -5,11 +5,7 @@ import { once } from '@zodash/once';
 
 const dependencies = new Map<any, () => any>();
 
-export interface ProvideInterface {
-  (token: string, mock: () => any): void;
-  (token: any, mock: any): void;
-}
-
+function provide(token: any, mock: () => any): void;
 /**
  * Provide a dependency.
  * @param token The injection token
@@ -17,6 +13,13 @@ export interface ProvideInterface {
  */
 function provide(token: any, mock: any): void {
   dependencies.set(token, mock);
+}
+
+function provideClass(token: any, ctor: any) {
+  dependencies.set(
+    token,
+    once(() => new ctor()),
+  );
 }
 
 function clear() {
@@ -35,10 +38,9 @@ export function inject<T extends new (...arguments_: any[]) => any>(ctor: T): T;
  * @param value Primitive value
  * @returns The dependency or a mock value if the dependency was mocked using mock()
  */
-export function inject<T extends string | number | boolean | symbol>(
-  token: any,
-  value: T,
-): T;
+export function inject<
+  T extends string | number | boolean | symbol | bigint | null | undefined,
+>(token: any, value: T): T;
 /**
  * Inject a dependency
  * @param token The injection token
@@ -47,7 +49,9 @@ export function inject<T extends string | number | boolean | symbol>(
  */
 export function inject<T>(token: any, factory?: () => T): T;
 
-export function inject(token: any, factory?: unknown): any {
+export function inject(): any {
+  const { 0: token, 1: factory, length } = arguments;
+
   if (!dependencies.has(token)) {
     if (typeof factory === 'function') {
       return factory();
@@ -57,19 +61,21 @@ export function inject(token: any, factory?: unknown): any {
         token,
         once(() => new token()),
       );
-    } else if (factory === undefined) {
+    } else if (length === 1) {
       throw new Error(`Cannot resolve ${token} dependency`);
     }
+    // Check if factory is primitive
     // eslint-disable-next-line unicorn/new-for-builtins
     else if (Object(factory) !== factory) {
       dependencies.set(token, () => factory);
     }
   }
+
   return dependencies.get(token)?.();
 }
 
 export const injector = {
-  provide: provide as ProvideInterface,
-  mock: provide as ProvideInterface,
+  provideClass,
+  provide: provide,
   clear,
 };

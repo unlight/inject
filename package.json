@@ -9,6 +9,15 @@
     "dependency-injection",
     "service-locator"
   ],
+  "main": "index.cjs",
+  "module": "index.mjs",
+  "types": "index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./index.mjs",
+      "require": "./index.cjs"
+    }
+  },
   "bugs": {
     "url": "https://github.com/unlight/inject/issues"
   },
@@ -37,7 +46,7 @@
     "eslint:fix": "eslint src --ext \"ts\" --fix",
     "eslint": "node node_modules/eslint/bin/eslint \"src/**/*.{ts,tsx}\"",
     "eslint:w": "watchexec -w src \"npm run eslint\"",
-    "build": "ng-packagr",
+    "build": "sh Taskfile build_pkgroll",
     "commit": "git-cz"
   },
   "dependencies": {
