@@ -1,3 +1,14 @@
+## [10.0.0](https://github.com/unlight/inject/compare/v9.0.0...v10.0.0) (2022-06-03)
+
+
+### ⚠ BREAKING CHANGES
+
+* Replace mock by provide
+
+### Code Refactoring
+
+* Replace mock by provide ([cc91323](https://github.com/unlight/inject/commit/cc91323c0a873fe3bec1160ef135d61822079aa7))
+
 ## [9.0.0](https://github.com/unlight/inject/compare/v8.1.0...v9.0.0) (2022-06-01)
 
 
