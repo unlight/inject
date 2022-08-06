@@ -84,11 +84,14 @@ describe('primitive value', () => {
   });
 
   it('null', () => {
+    // eslint-disable-next-line unicorn/no-null
     const test = inject('token', null);
+    // eslint-disable-next-line unicorn/no-null
     expect(test).toBe(null);
   });
 
   it('undefined', () => {
+    // eslint-disable-next-line unicorn/no-useless-undefined
     const test = inject('token', undefined);
     expect(test).toBe(undefined);
   });
