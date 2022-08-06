@@ -29,3 +29,7 @@ vehicle = inject(Car);
 expect(vehicle).toBeA(Car);
 expect(Car.count).toEqual(1);
 ```
+
+## License
+
+[MIT License](https://opensource.org/licenses/MIT) (c) 2022

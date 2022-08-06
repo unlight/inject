@@ -7,9 +7,15 @@ build_pkgroll() {
   rm -rf dist
   mkdir dist
   # https://esbuild.github.io/api/#target
-  npx pkgroll --dist=. --target=es2015
-  cp -f README.md LICENSE package.json dist
-  mv -f index.cjs index.mjs index.d.ts dist
+  npx pkgroll --target=es2015
+  cp -f README.md dist
+  cat package.json | jq '.main = "./index.cjs"' |
+    jq '.module = "./index.mjs"' |
+    jq '.types = "./index.d.ts"' |
+    jq '.exports.".".import = "./index.mjs"' |
+    jq '.exports.".".require = "./index.cjs"' \
+      >dist/package.json
+  set +x
 }
 
 "$@"
