@@ -30,6 +30,10 @@ expect(vehicle).toBeA(Car);
 expect(Car.count).toEqual(1);
 ```
 
+## Similar Projects
+
+- https://github.com/mickgrz/injects
+
 ## License
 
 [MIT License](https://opensource.org/licenses/MIT) (c) 2022
